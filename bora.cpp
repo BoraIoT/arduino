@@ -70,6 +70,14 @@ void BORA::setServer(String server, int port, String user, String pass) {
     this->broker_pass = pass;
 }
 
+bool BORA::isConnected() {
+    return this->broker.connected();
+} 
+
+int BORA::clientState() {
+    return this->broker.state();
+}
+
 void BORA::connectBroker() {
     while (!this->broker.connected()) {
         if (this->broker.connect("BORA", "vzriadoh:vzriadoh", "Y98z8eUaIYiRv7VO_L3rgBPYMjGFAEyZ")) {

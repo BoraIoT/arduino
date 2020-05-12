@@ -23,9 +23,6 @@ class BORA {
         bool has_new_data = false;
         int period = 2000;
 
-        String debug;
-        String debug2;
-
         const char* generateTopic(String topic);
         void sendData(String variable, String value);
 
@@ -35,7 +32,9 @@ class BORA {
         void setServer(String server, int port, String user, String pass);
         void handleBrokerMessages(char* topic, byte* payload, unsigned int length);
         void connectBroker();
-        boolean loop();
+        bool isConnected();
+        int clientState();
+        bool loop();
 
         int analogRead(int pin, String variable);
         int digitalRead(int pin, String variable);
