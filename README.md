@@ -16,7 +16,7 @@ This is an Arduino Library responsible to send and receive data from [BORA IoT](
 2. On Arduino import library with `#include <bora.h>`
 3. Declare your device variable object with `BORA <your-device-variable>(<wifi-object-as-parameter>)`
 ```
-WifiClient wifi;
+WiFiClient wifi;
 BORA my_device(wifi);
 ```
 4. Init your device variable object using `<your-device-variable>.begin("<your-device-secret-key>")`
