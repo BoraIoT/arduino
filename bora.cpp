@@ -15,9 +15,9 @@ void BORA::begin(const char* secret_key) {
     this->secret_key = secret_key;
 
     this->broker.setServer("baboon.rmq.cloudamqp.com", 1883);
-    this->broker.setCallback([this](char *topic, byte *payload, unsigned int length) {   
-        this->handleBrokerMessages(topic, payload, length); 
-    }); 
+    this->broker.setCallback([this](char *topic, byte *payload, unsigned int length) {
+        this->handleBrokerMessages(topic, payload, length);
+    });
 
     this->connectBroker();
 }
@@ -35,7 +35,7 @@ void BORA::handleBrokerMessages(char* topic, byte* payload, unsigned int length)
     }
 }
 
-boolean BORA::loop() {
+bool BORA::loop() {
     this->connectBroker();
 
     if (this->has_new_data) {
@@ -64,7 +64,7 @@ void BORA::sendData(String variable, String value) {
 }
 
 void BORA::setServer(String server, int port, String user, String pass) {
-    this->broker_server = server; 
+    this->broker_server = server;
     this->broker_port = port;
     this->broker_user = user;
     this->broker_pass = pass;
@@ -72,7 +72,7 @@ void BORA::setServer(String server, int port, String user, String pass) {
 
 bool BORA::isConnected() {
     return this->broker.connected();
-} 
+}
 
 int BORA::clientState() {
     return this->broker.state();

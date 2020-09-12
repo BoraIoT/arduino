@@ -6,7 +6,7 @@
 #include <Client.h>
 #include <PubSubClient.h>
 #include <ArduinoJson.h>
- 
+
 class BORA {
     private:
         PubSubClient broker;
