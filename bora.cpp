@@ -20,6 +20,7 @@ void BORA::begin(const char* secret_key) {
     });
 
     this->connectBroker();
+    this->initBroker();
 }
 
 void BORA::handleBrokerMessages(char* topic, byte* payload, unsigned int length) {
@@ -91,6 +92,14 @@ void BORA::connectBroker() {
             delay(500);
         }
     }
+}
+
+void BORA::initBroker() {
+    restclient rest("server.bora-iot.com", 80);
+    String secret_key = (String)this->secret_key;
+    String pathUrl = "/device/init_broker/" + secret_key;
+
+    rest.post(pathUrl.c_str(), "0");
 }
 
 int BORA::digitalRead(int pin, String variable) {

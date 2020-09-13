@@ -11,7 +11,6 @@ String led;
 
 WiFiClient wifi;
 BORA bora_device(wifi);
-restclient boraServer("server.bora-iot.com", 80);
 
 void setup() {
   Serial.begin(9600);
@@ -42,7 +41,7 @@ void loop() {
   potenciometro = bora_device.analogRead(A0, "potenciometro");
   Serial.print("Potenciometro ");
   Serial.println(potenciometro);
-  
+
   readExemplo = bora_device.virtualRead("exemplo");
   Serial.print("Exemplo ");
   Serial.println(readExemplo);
@@ -52,6 +51,6 @@ void loop() {
   Serial.println(led);
 
   delay(500);
-  
+
   bora_device.loop();
 }

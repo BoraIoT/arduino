@@ -32,6 +32,7 @@ class BORA {
         BORA(Client& wifi);
         void begin(const char* secret_key);
 
+        void initBroker();
         void setServer(String server, int port, String user, String pass);
         void handleBrokerMessages(char* topic, byte* payload, unsigned int length);
         void connectBroker();
