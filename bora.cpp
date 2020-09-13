@@ -46,6 +46,13 @@ bool BORA::loop() {
     return this->broker.loop();
 }
 
+String BORA::generatePostUrl(String variable, String value) {
+    String secret_key = (String)this->secret_key;
+    String generatedPostUrl = "/device/secret/" + secret_key + "/data/" + variable + "?value=" + value;
+
+    return generatedPostUrl;
+}
+
 const char* BORA::generateTopic(String topic) {
     String secret_key = (String)this->secret_key;
     String separator = "/";
@@ -55,12 +62,10 @@ const char* BORA::generateTopic(String topic) {
 }
 
 void BORA::sendData(String variable, String value) {
-    const char* topic = this->generateTopic(variable);
+    restclient rest("server.bora-iot.com", 80);
+    String generatedUrl = this->generatePostUrl(variable, value);
 
-    if (millis() >= this->time_now + this->period) {
-        this->has_new_data = true;
-        this->broker.publish(topic, value.c_str());
-    }
+    rest.post(generatedUrl.c_str(), "0");
 }
 
 void BORA::setServer(String server, int port, String user, String pass) {

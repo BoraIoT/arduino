@@ -6,12 +6,14 @@
 #include <Client.h>
 #include <PubSubClient.h>
 #include <ArduinoJson.h>
+#include <restclient.h>
 
 class BORA {
     private:
         PubSubClient broker;
         const char* secret_key;
 
+        String rest_server;
         String broker_server;
         int broker_port;
         String broker_user;
@@ -23,6 +25,7 @@ class BORA {
         bool has_new_data = false;
         int period = 2000;
 
+        String generatePostUrl(String variable, String value);
         const char* generateTopic(String topic);
         void sendData(String variable, String value);
 

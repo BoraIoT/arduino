@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "*.php": "php",
+        "string": "cpp",
+        "iosfwd": "cpp"
+    }
+}
