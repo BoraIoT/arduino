@@ -1,14 +1,17 @@
+#include <ESP8266WiFi.h>
+#include <restclient.h>
 #include <bora.h>
 #include <ArduinoJson.h>
-#include <ESP8266WiFi.h>
 
-const char* SSID = "SSID";
-const char* PASSWORD = "PASSWORD";
-float potenciometro;
+const char* SSID = "Paulo 401";
+const char* PASSWORD = "pcdrpv25";
+int potenciometro;
 String readExemplo;
+String led;
 
 WiFiClient wifi;
 BORA bora_device(wifi);
+restclient boraServer("server.bora-iot.com", 80);
 
 void setup() {
   Serial.begin(9600);
@@ -37,5 +40,18 @@ void loop() {
   connectWifi();
 
   potenciometro = bora_device.analogRead(A0, "potenciometro");
+  Serial.print("Potenciometro ");
+  Serial.println(potenciometro);
+  
   readExemplo = bora_device.virtualRead("exemplo");
+  Serial.print("Exemplo ");
+  Serial.println(readExemplo);
+
+  led = bora_device.virtualRead("led");
+  Serial.print("Led ");
+  Serial.println(led);
+
+  delay(500);
+  
+  bora_device.loop();
 }
