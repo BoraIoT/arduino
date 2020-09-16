@@ -42,6 +42,13 @@ my_device.digitalRead(D1, "pin_D1")
 my_device.virtualRead("pin_D1")
 ```
 
+It's also import do add `my_device.loop()` function into Arduino loop. That's how we get your data from BORA Server.
+```
+void loop() {
+  bora_device.loop();
+}
+```
+
 ## Writing variables:
 To write values Arduino already uses `analogRead()` and `digitalRead()`. It's also possible to write virtual variables directly from Arduino IDE to API. Just like reading variables you may use it inside your device variable object:
 #### int analogWrite(int pin, int value, String variable);
