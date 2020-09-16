@@ -1,5 +1,5 @@
 # Arduino Library for BORA IoT Plataform
-> **Version:** 1.0.0
+> **Version:** 1.1.0
 > **Tags:** arduino, node-mcu, iot, mqtt
 
 This is an Arduino Library responsible to send and receive data from [BORA IoT](http://bora-iot.com/).
@@ -40,6 +40,13 @@ my_device.digitalRead(D1, "pin_D1")
 #### String virtualRead(String variable);
 ```
 my_device.virtualRead("pin_D1")
+```
+
+It's also import do add `my_device.loop()` function into Arduino loop. That's how we get your data from BORA Server.
+```
+void loop() {
+  bora_device.loop();
+}
 ```
 
 ## Writing variables:
