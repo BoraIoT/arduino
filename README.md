@@ -1,5 +1,5 @@
 # Arduino Library for BORA IoT Plataform
-> **Version:** 1.0.0
+> **Version:** 1.1.0
 > **Tags:** arduino, node-mcu, iot, mqtt
 
 This is an Arduino Library responsible to send and receive data from [BORA IoT](http://bora-iot.com/).
