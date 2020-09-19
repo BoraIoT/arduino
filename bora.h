@@ -20,7 +20,7 @@ class BORA {
         String broker_pass;
 
     public:
-        StaticJsonDocument<1000> values;
+        StaticJsonDocument<1500> values;
         unsigned long time_now = 0;
         bool has_new_data = false;
         int period = 2000;

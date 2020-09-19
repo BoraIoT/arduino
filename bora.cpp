@@ -31,9 +31,6 @@ void BORA::handleBrokerMessages(char* topic, byte* payload, unsigned int length)
     }
 
     this->values[(String)topic] = value;
-    if (value) {
-        this->values[(String)topic] = value;
-    }
 }
 
 bool BORA::loop() {
