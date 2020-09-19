@@ -5,7 +5,7 @@
     "description": "Arduino Library for easy integration with Bora IoT Plataform",
     "repository": {
         "type": "git",
-        "url": "https://github.com/BoraIoT/arduino"
+        "url": "https://github.com/BoraIoT/bora-arduino"
     },
     "version": "1.1.0",
     "examples": "examples/*.ino",
