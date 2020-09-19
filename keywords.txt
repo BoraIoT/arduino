@@ -1,0 +1,6 @@
+# Datatypes (KEYWORD1)
+BORA    KEYWORD1
+
+# Methods and Functions (KEYWORD2)
+virtualRead KEYWORD2
+virtualWrite    KEYWORD2

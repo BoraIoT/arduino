@@ -1,0 +1,13 @@
+{
+    "name": "BoraIoT-Arduino",
+    "author": "BORA IoT <contact@bora-iot.com>",
+    "keywords": "iot",
+    "description": "Arduino Library for easy integration with Bora IoT Plataform",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/BoraIoT/arduino"
+    },
+    "version": "1.1.0",
+    "examples": "examples/*.ino",
+    "frameworks": "arduino"
+}
