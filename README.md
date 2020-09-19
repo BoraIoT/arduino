@@ -4,6 +4,12 @@
 
 This is an Arduino Library responsible to send and receive data from [BORA IoT](http://bora-iot.com/).
 
+## Dependencies:
+BORA IoT Arduino Library it's just a wrapper using PubsubClient MQTT, ArduinoJson and RestClient functions. In order to use you will also need to download and include:
+- [PubsubClient](https://github.com/knolleary/pubsubclient)
+- [ArduinoJson](https://arduinojson.org/)
+- [RestClient](https://github.com/modulusx/esp8266-arduino-restclient)
+
 ---
 
 ## Requirements:
