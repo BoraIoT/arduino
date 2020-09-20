@@ -33,15 +33,17 @@ void BORA::handleBrokerMessages(char* topic, byte* payload, unsigned int length)
     this->values[(String)topic] = value;
 }
 
-bool BORA::loop() {
+void BORA::loop() {
     this->connectBroker();
 
-    if (this->has_new_data) {
-        this->has_new_data = true;
-        this->time_now += this->period;
+    unsigned long time_now = millis();
+    while(millis() < time_now + this->period) {
+        this->broker.loop();
     }
+}
 
-    return this->broker.loop();
+void BORA::setPeriod(int period) {
+    this->period = period;
 }
 
 String BORA::generatePostUrl(String variable, String value) {
@@ -51,7 +53,7 @@ String BORA::generatePostUrl(String variable, String value) {
     return generatedPostUrl;
 }
 
-const char* BORA::generateTopic(String topic) {
+String BORA::generateTopic(String topic) {
     String secret_key = (String)this->secret_key;
     String separator = "/";
     String generatedTopic = secret_key + separator + topic;
@@ -60,10 +62,14 @@ const char* BORA::generateTopic(String topic) {
 }
 
 void BORA::sendData(String variable, String value) {
-    restclient rest("server.bora-iot.com", 80);
-    String generatedUrl = this->generatePostUrl(variable, value);
+    String last_data = this->values[this->generateTopic(variable)].as<String>();
+    bool is_new_data = last_data != value;
 
-    rest.post(generatedUrl.c_str(), "0");
+    if (is_new_data) {
+        restclient rest("server.bora-iot.com", 80);
+        String generatedUrl = this->generatePostUrl(variable, value);
+        rest.post(generatedUrl.c_str(), "0");
+    }
 }
 
 void BORA::setServer(String server, int port, String user, String pass) {
@@ -84,7 +90,8 @@ int BORA::clientState() {
 void BORA::connectBroker() {
     while (!this->broker.connected()) {
         if (this->broker.connect("BORA", "vzriadoh:vzriadoh", "Y98z8eUaIYiRv7VO_L3rgBPYMjGFAEyZ")) {
-            this->broker.subscribe(this->generateTopic("#"));
+            String generatedTopic = this->generateTopic("#");
+            this->broker.subscribe(generatedTopic.c_str());
         } else {
             delay(500);
         }
@@ -129,5 +136,5 @@ String BORA::virtualWrite(String variable, String value) {
 }
 
 String BORA::virtualRead(char* variable) {
-    return this->values[(String)this->generateTopic(variable)].as<String>();
+    return this->values[this->generateTopic(variable)].as<String>();
 }

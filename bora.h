@@ -18,19 +18,19 @@ class BORA {
         int broker_port;
         String broker_user;
         String broker_pass;
-
     public:
-        StaticJsonDocument<1500> values;
-        unsigned long time_now = 0;
-        bool has_new_data = false;
-        int period = 2000;
-
-        String generatePostUrl(String variable, String value);
-        const char* generateTopic(String topic);
-        void sendData(String variable, String value);
-
         BORA(Client& wifi);
         void begin(const char* secret_key);
+
+        StaticJsonDocument<1500> values;
+        bool has_new_data = false;
+        int period = 500;
+        int countData = 0;
+
+        String generatePostUrl(String variable, String value);
+        String generateTopic(String topic);
+        void sendData(String variable, String value);
+        void setPeriod(int period);
 
         void initBroker();
         void setServer(String server, int port, String user, String pass);
@@ -38,7 +38,7 @@ class BORA {
         void connectBroker();
         bool isConnected();
         int clientState();
-        bool loop();
+        void loop();
 
         int analogRead(int pin, String variable);
         int digitalRead(int pin, String variable);
