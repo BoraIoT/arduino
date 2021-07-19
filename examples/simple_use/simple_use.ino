@@ -1,10 +1,8 @@
 #include <ESP8266WiFi.h>
-#include <restclient.h>
 #include <bora.h>
-#include <ArduinoJson.h>
 
-const char* SSID = "Paulo 401";
-const char* PASSWORD = "pcdrpv25";
+const char* SSID = "SSID";
+const char* PASSWORD = "PASSWORD";
 int potenciometro;
 String readExemplo;
 String led;
